@@ -8,6 +8,9 @@ import { UsersService } from './users.service';
 export class UsersController {
     constructor(private readonly usersService: UsersService){}
 
+    @Post()
+    createUser(){}
+
     @Get()
     findAll(): Promise<User[]> {
     return this.usersService.findAll();
