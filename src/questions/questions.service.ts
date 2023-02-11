@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { InsertValuesMissingError, Repository } from 'typeorm';
-import { User } from './users.entity';
+import { User } from './questions.entity';
 
 @Injectable()
-export class UsersService {
+export class QuestionsService {
   constructor(
-    @InjectRepository(User)
+    @InjectRepository(Question)
     private usersRepository: Repository<User>,
   ) {}
 

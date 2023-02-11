@@ -1,24 +1,21 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'users'})
-export class User {
+@Entity({ name: 'questions'})
+export class Question {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  firstName: string;
+  Company: string;
 
   @Column()
-  lastName: string;
+  Question: string;
 
   @Column()
-  email: string;
+  Role: string; // this is depending on the role of the NCU, i.e. Frontend dev, backend dev, etc.
 
   @Column({ default: true })
   isActive: boolean;
 
-  /* 
-  @OneToMany(type => Photo, photo => photo.user)
-  photos: Photo[];
-  */
+ 
 }
