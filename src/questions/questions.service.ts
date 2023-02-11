@@ -21,9 +21,6 @@ export class QuestionsService {
       isActive: createQuestionDto.isActive,
     };
 
-    // Example: saving the new question to a database
-    this.questions.push(newQuestion);
-
     return newQuestion;
   }
 
