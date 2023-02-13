@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { InsertValuesMissingError, Repository } from 'typeorm';
 import { Question } from './questions.entity';
+import { CreateQuestionDto } from './dto/createQuestion.dto';
 
 @Injectable()
 export class QuestionsService {

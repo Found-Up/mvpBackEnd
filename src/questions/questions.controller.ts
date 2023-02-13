@@ -2,9 +2,10 @@
 
 /* HAVE TO MAKE QUESTION DTO OBJECT */
 
-import { Controller, Delete, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post } from '@nestjs/common';
 import { Question } from './questions.entity';
 import { QuestionsService } from './questions.service';
+import { CreateQuestionDto } from './dto/createQuestion.dto';
 
 @Controller()
 export class QuestionsController {
