@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'questions'})
+@Entity({ name: 'questions' })
 export class Question {
   @PrimaryGeneratedColumn()
   id: number;
@@ -16,6 +16,4 @@ export class Question {
 
   @Column({ default: true })
   isActive: boolean;
-
- 
 }
