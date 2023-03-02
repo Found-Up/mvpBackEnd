@@ -1,26 +1,40 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { InsertValuesMissingError, Repository } from 'typeorm';
-import { User } from './users.entity';
+import { Inject, Injectable } from '@nestjs/common';
+import { User } from './entity/users.entity';
+import { IUserRepository } from './interface/user.repository.interface';
+import { IUserService } from './interface/user.service.interface';
+import { CreateUserDto } from './dto/create-user.dto';
+import { DeleteResult } from 'typeorm';
 
 @Injectable()
-export class UsersService {
+export class UserService implements IUserService {
   constructor(
-    @InjectRepository(User)
-    private usersRepository: Repository<User>,
+    @Inject('IUserRepository')
+    private readonly userRepository: IUserRepository,
   ) {}
 
-  createUser(){}
-
-  findAll(): Promise<User[]> {
-    return this.usersRepository.find();
+  public async createUser(userDto: CreateUserDto): Promise<User> {
+    const user = new User();
+    user.firstName = userDto.firstName;
+    user.lastName = userDto.lastName;
+    user.email = userDto.email;
+    user.password = userDto.password;
+    user.createdAt = Date.now();
+    user.updatedAt = null;
+    user.isActive = false;
+    return this.userRepository.create(user);
   }
 
-  findOne(id: number): Promise<User> {
-    return this.usersRepository.findOneBy({ id });
+  public async getAll(): Promise<User[]> {
+    return this.userRepository.getAll();
   }
-
-  async remove(id: string): Promise<void> {
-    await this.usersRepository.delete(id);
+  public async getById(id: number) {
+    return this.userRepository.getById({
+      where: {
+        id: id,
+      },
+    });
+  }
+  public async delete(id: string): Promise<DeleteResult> {
+    return this.userRepository.delete(id);
   }
 }

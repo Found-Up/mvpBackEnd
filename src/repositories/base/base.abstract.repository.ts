@@ -1,4 +1,4 @@
-import { BaseInterfaceRepository } from './base.interface.repository';
+import { IBaseInterfaceRepository } from './base.interface.repository';
 import {
   DeleteResult,
   FindOneOptions,
@@ -9,7 +9,7 @@ import {
 import { QueryPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
 
 export abstract class BaseAbstractRepository<T>
-  implements BaseInterfaceRepository<T>
+  implements IBaseInterfaceRepository<T>
 {
   private entity: Repository<T>;
 
