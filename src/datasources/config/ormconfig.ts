@@ -9,8 +9,9 @@ export default (configService: ConfigService): TypeOrmModuleOptions => {
     username: configService.get('DATABASE_USERNAME'),
     password: configService.get('DATABASE_PASSWORD'),
     database: configService.get('DATABASE_NAME'),
-    entities: ['dist/services/**/entity/*.entity{.js,.ts}'],
+    entities: ['dist/services/**/entity/*.entity.js'],
     synchronize: false,
+    autoLoadEntities: true,
   };
   return options;
 };

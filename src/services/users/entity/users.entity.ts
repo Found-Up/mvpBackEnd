@@ -1,47 +1,31 @@
-import { Entity, Column, BeforeInsert, ObjectIdColumn } from 'typeorm';
+import { Entity, Column, BeforeInsert, PrimaryGeneratedColumn } from 'typeorm';
 import { hashSync, genSaltSync } from 'bcrypt';
 
 @Entity({ name: 'users' })
 export class User {
-  @ObjectIdColumn()
-  id: number;
+  @PrimaryGeneratedColumn()
+  user_id: number;
 
-  @Column({
-    type: 'string',
-  })
-  firstName: string;
+  @Column()
+  first_name: string;
 
-  @Column({
-    type: 'string',
-  })
-  lastName: string;
+  @Column()
+  last_name: string;
 
-  @Column({
-    type: 'string',
-    unique: true,
-  })
+  @Column()
   email: string;
 
-  @Column({
-    type: 'string',
-  })
+  @Column()
   password: string;
 
-  @Column({
-    type: 'boolean',
-    default: true,
-  })
-  isActive: boolean;
+  @Column()
+  active: boolean;
 
-  @Column({
-    type: 'date',
-  })
-  createdAt: any;
+  @Column({ type: 'datetime' })
+  created_at: any;
 
-  @Column({
-    type: 'date',
-  })
-  updatedAt: any;
+  @Column({ type: 'datetime' })
+  updated_at: any;
 
   @BeforeInsert()
   async hashPassword() {

@@ -14,13 +14,13 @@ export class UserService implements IUserService {
 
   public async createUser(userDto: CreateUserDto): Promise<User> {
     const user = new User();
-    user.firstName = userDto.firstName;
-    user.lastName = userDto.lastName;
+    user.first_name = userDto.firstName;
+    user.last_name = userDto.lastName;
     user.email = userDto.email;
     user.password = userDto.password;
-    user.createdAt = Date.now();
-    user.updatedAt = null;
-    user.isActive = false;
+    user.created_at = Date.now();
+    user.updated_at = null;
+    user.active = false;
     return this.userRepository.create(user);
   }
 
@@ -30,7 +30,7 @@ export class UserService implements IUserService {
   public async getById(id: number) {
     return this.userRepository.getById({
       where: {
-        id: id,
+        user_id: id,
       },
     });
   }
