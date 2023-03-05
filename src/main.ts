@@ -15,6 +15,6 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   app.setGlobalPrefix(APIPrefix.Version);
   const port = process.env.SERVER_PORT;
-  await app.listen(3000);
+  await app.listen(port);
 }
 bootstrap();
