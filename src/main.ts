@@ -13,8 +13,8 @@ if (typeof Reflect === 'undefined') {
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
-  app.setGlobalPrefix(APIPrefix);
-  const port = parseInt(process.env.SERVER_PORT);
-  await app.listen(port);
+  app.setGlobalPrefix(APIPrefix.Version);
+  const port = process.env.SERVER_PORT;
+  await app.listen(3000);
 }
 bootstrap();

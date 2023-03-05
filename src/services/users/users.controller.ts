@@ -1,13 +1,16 @@
 /* This is a preliminary service. WILL CHANGE IN THE FUTURE ONCE WE FLESH OUT ER DIAGRAMS */
 
-import { Body, Controller, Delete, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Inject, Post } from '@nestjs/common';
 import { User } from './entity/users.entity';
 import { IUserService } from './interface/user.service.interface';
 import { CreateUserDto } from './dto/create-user.dto';
 import { DeleteResult } from 'typeorm';
 @Controller('UserService')
 export class UsersController {
-  constructor(private readonly usersService: IUserService) {}
+  constructor(
+    @Inject('IUserService')
+    private readonly usersService: IUserService,
+  ) {}
 
   @Post()
   public async createUser(@Body() userDto: CreateUserDto): Promise<User> {

@@ -1,1 +1,3 @@
-export const APIPrefix = 'FoundUpServices';
+export enum APIPrefix {
+  Version = 'api/v1',
+}
