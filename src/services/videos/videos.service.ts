@@ -8,7 +8,7 @@ import { ConfigService } from '@nestjs/config';
 import { v4 as uuid } from 'uuid';
  
 @Injectable()
-export class FilesService {
+export class VideoService {
   constructor(
     @InjectRepository(Video)
     private publicFilesRepository: Repository<Video>,
