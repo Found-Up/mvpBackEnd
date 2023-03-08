@@ -30,7 +30,7 @@ jobs:
         SERVER_PORT: ${{ secrets.SERVER_PORT }}
       uses: Borales/actions-yarn@v4.2.0
       with:
-        cmd: build:prod
+        cmd: build
     
     - name: Run tests
       uses: Borales/actions-yarn@v4.2.0
