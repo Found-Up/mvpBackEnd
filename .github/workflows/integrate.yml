@@ -4,7 +4,7 @@ run-name: Build and Test by @${{ github.actor }}
 on: push
 
 jobs:
-  build:
+  Build:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout branch
@@ -20,14 +20,7 @@ jobs:
       with:
         cmd: install
     
-    - name: Get env variables and build
-      env:
-        DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
-        DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
-        DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
-        DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-        DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
-        SERVER_PORT: ${{ secrets.SERVER_PORT }}
+    - name: Build the project
       uses: Borales/actions-yarn@v4.2.0
       with:
         cmd: build

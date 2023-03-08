@@ -4,8 +4,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import ormconfig from './datasources/config/ormconfig';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { VideosModule } from './services/videos/videos.module';
-import { QuestionsModule } from './services/questions/questions.module';
 import { UsersModule } from './services/users/users.module';
 
 @Module({

@@ -1,6 +1,14 @@
 /* This is a preliminary service. WILL CHANGE IN THE FUTURE ONCE WE FLESH OUT ER DIAGRAMS */
 
-import { Body, Controller, Delete, Get, Inject, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Inject,
+  Param,
+  Post,
+} from '@nestjs/common';
 import { User } from './entity/users.entity';
 import { IUserService } from './interface/user.service.interface';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -12,23 +20,23 @@ export class UsersController {
     private readonly usersService: IUserService,
   ) {}
 
-  @Post()
+  @Post('CreateUser')
   public async createUser(@Body() userDto: CreateUserDto): Promise<User> {
     return await this.usersService.createUser(userDto);
   }
 
-  @Get()
+  @Get('GetAllUsers')
   public async getAll(): Promise<User[]> {
     return await this.usersService.getAll();
   }
 
-  @Get()
-  public async getById(id: number): Promise<User> {
+  @Get('GetById/:id')
+  public async getById(@Param('id') id: number): Promise<User> {
     return await this.usersService.getById(id);
   }
 
-  @Delete()
-  public async delete(id: string): Promise<DeleteResult> {
+  @Delete('DeleteUser/:id')
+  public async delete(@Param('id') id: string): Promise<DeleteResult> {
     return await this.usersService.delete(id);
   }
 }
