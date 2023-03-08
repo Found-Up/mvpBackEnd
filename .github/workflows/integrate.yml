@@ -1,0 +1,39 @@
+name: Continuous Integration
+run-name: Build and Test by @${{ github.actor }}
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout branch
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js 16.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16.x
+    
+    - name: Install packages
+      uses: borales/action-yarn@v4
+      with:
+        cmd: install
+    
+    - name: Get env variables and build
+      env:
+        DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+        DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
+        DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+        DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+        DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+        SERVER_PORT: ${{ secrets.SERVER_PORT }}
+      uses: borales/action-yarn@v4
+      with:
+        cmd: build:prod
+    
+    - name: Run tests
+      uses: borales/action-yarn@v4
+      with:
+        cmd: test
+
