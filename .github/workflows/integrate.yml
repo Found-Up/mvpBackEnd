@@ -1,7 +1,7 @@
 name: Continuous Integration
 run-name: Build and Test by @${{ github.actor }}
 
-on: push
+on: [push, pull_request]
 
 jobs:
   Build:
