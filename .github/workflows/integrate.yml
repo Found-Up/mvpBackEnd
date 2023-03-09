@@ -1,7 +1,10 @@
 name: Continuous Integration
 run-name: Build and Test by @${{ github.actor }}
 
-on: [push, pull_request]
+on: 
+  push:
+  pull_request:
+    branches: [ main ]
 
 jobs:
   Build:
@@ -20,13 +23,14 @@ jobs:
       with:
         cmd: install
     
+    - name: Run tests
+      uses: Borales/actions-yarn@v4.2.0
+      with:
+        cmd: test
+    
     - name: Build the project
       uses: Borales/actions-yarn@v4.2.0
       with:
         cmd: build
     
-    - name: Run tests
-      uses: Borales/actions-yarn@v4.2.0
-      with:
-        cmd: test
 
