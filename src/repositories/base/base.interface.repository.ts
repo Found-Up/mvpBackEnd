@@ -6,7 +6,7 @@ import {
 } from 'typeorm';
 import { QueryPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
 
-export interface BaseInterfaceRepository<T> {
+export interface IBaseInterfaceRepository<T> {
   create(data: T | any): Promise<T>;
   getById(id: FindOneOptions<T>): Promise<T>;
   getAll(): Promise<T[]>;
