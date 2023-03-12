@@ -1,6 +1,6 @@
 import { Question } from '../entity/questions.entity';
 import { CreateQuestionDto } from '../dto/CreateQuestion.dto';
-import { UpdateQuestionDto } from '../dto/updateQuestion.dto';
+import { UpdateQuestionDto } from '../dto/UpdateQuestion.dto';
 import { DeleteResult, UpdateResult } from 'typeorm';
 
 export interface IQuestionService {
