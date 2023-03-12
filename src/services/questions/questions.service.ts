@@ -7,7 +7,7 @@ import { UpdateQuestionDto } from './dto/UpdateQuestion.dto';
 import { DeleteResult, UpdateResult } from 'typeorm';
 
 @Injectable()
-export class QuestionsService {
+export class QuestionsService implements IQuestionService {
   constructor(
     @Inject('IQuestionRepository')
     private readonly questionRepository: IQuestionRepository,

@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsDate } from 'class-validator';
+import { IsNotEmpty } from 'class-validator';
 export class UpdateQuestionDto {
   @IsNotEmpty()
   questionId: number;
