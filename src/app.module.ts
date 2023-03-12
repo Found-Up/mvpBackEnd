@@ -5,6 +5,7 @@ import ormconfig from './datasources/config/ormconfig';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './services/users/users.module';
+import { QuestionsModule } from './services/questions/questions.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { UsersModule } from './services/users/users.module';
       isGlobal: true,
     }),
     UsersModule,
+    QuestionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

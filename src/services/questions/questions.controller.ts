@@ -1,36 +1,47 @@
-/* This is a preliminary service. WILL CHANGE IN THE FUTURE ONCE WE FLESH OUT ER DIAGRAMS */
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Inject,
+  Param,
+  Post,
+} from '@nestjs/common';
+import { Question } from './entity/questions.entity';
+import { IQuestionService } from './interface/questions.service.interface';
+import { CreateQuestionDto } from './dto/CreateQuestion.dto';
+import { UpdateQuestionDto } from './dto/UpdateQuestion.dto';
+import { DeleteResult } from 'typeorm';
 
-/* HAVE TO MAKE QUESTION DTO OBJECT */
-
-import { Body, Controller, Delete, Get, Post } from '@nestjs/common';
-import { Question } from './questions.entity';
-import { QuestionsService } from './questions.service';
-import { CreateQuestionDto } from './dto/createQuestion.dto';
-
-@Controller()
+@Controller('QuestionService')
 export class QuestionsController {
-    constructor(private readonly questionsService: QuestionsService){}
-    
-    @Post()
-    async createQuestion(@Body() createQuestionDto: CreateQuestionDto) {
-        return this.questionsService.createQuestion(createQuestionDto);
-    }
+  constructor(
+    @Inject('IQuestionService')
+    private readonly questionService: IQuestionService,
+  ) {}
 
+  @Post('CreateQuestion')
+  public async createQuestion(@Body() createQuestionDto: CreateQuestionDto) {
+    return this.questionService.createQuestion(createQuestionDto);
+  }
 
-    @Get()
-    findAll(): Promise<Question[]> {
-    return this.questionsService.findAll();
-    }
+  @Get('GetAllQuestions')
+  public async getAll(): Promise<Question[]> {
+    return this.questionService.getAll();
+  }
 
-    @Get()
-    findOne(id: number): Promise<Question> {
-    return this.questionsService.findOne(id);
-    }
+  @Get('GetById/:id')
+  public async getById(@Param('id') id: number): Promise<Question> {
+    return this.questionService.getById(id);
+  }
 
-    @Delete()
-    remove(id: string): Promise<void> {
-        return this.questionsService.remove(id);
-    }
-  
-  
+  @Delete('DeleteQuestion/:id')
+  public async delete(@Param('id') id: string): Promise<DeleteResult> {
+    return this.questionService.delete(id);
+  }
+
+  @Post('UpdateQuestion')
+  public async updateQuestion(@Body() updateQuestionDto: UpdateQuestionDto) {
+    return this.questionService.updateQuestion(updateQuestionDto);
+  }
 }
