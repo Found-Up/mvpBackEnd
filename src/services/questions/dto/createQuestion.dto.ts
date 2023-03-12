@@ -1,7 +1,17 @@
+import { IsNotEmpty } from 'class-validator';
 export class CreateQuestionDto {
-  id: number;
-  Company: string;
-  Question: string;
-  Role: string;
-  isActive: boolean;
+  @IsNotEmpty()
+  companyId: number;
+
+  @IsNotEmpty()
+  questionText: string;
+
+  @IsNotEmpty()
+  duration: string;
+
+  @IsNotEmpty()
+  createdBy: number;
+
+  @IsNotEmpty()
+  status: string;
 }

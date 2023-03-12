@@ -1,7 +1,17 @@
-export class updateQuestionDto {
-  id: number;
-  Company: string;
-  Question: string;
-  Role: string;
-  isActive: boolean;
+import { IsNotEmpty, IsDate } from 'class-validator';
+export class UpdateQuestionDto {
+  @IsNotEmpty()
+  questionId: number;
+
+  @IsNotEmpty()
+  questionText: string;
+
+  @IsNotEmpty()
+  duration: string;
+
+  @IsNotEmpty()
+  updatedBy: number;
+
+  @IsNotEmpty()
+  status: string;
 }
