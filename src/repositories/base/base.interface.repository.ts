@@ -11,6 +11,7 @@ export interface IBaseInterfaceRepository<T> {
   getById(id: FindOneOptions<T>): Promise<T>;
   getAll(): Promise<T[]>;
   getByCondition(filterCondition: FindOptionsWhere<T>): Promise<T[]>;
+  getOneByCondition(query: FindOptionsWhere<T>): Promise<T>;
   update(
     updateConditions: any,
     data: QueryPartialEntity<T> | any,

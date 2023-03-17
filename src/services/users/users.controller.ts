@@ -12,7 +12,8 @@ import {
 import { User } from './entity/users.entity';
 import { IUserService } from './interface/user.service.interface';
 import { CreateUserDto } from './dto/create-user.dto';
-import { DeleteResult } from 'typeorm';
+import { DeleteResult, FindOptionsWhere } from 'typeorm';
+import { AuthenticationGuard } from '../authentication/authentication.guard';
 @Controller('UserService')
 export class UsersController {
   constructor(
@@ -33,6 +34,20 @@ export class UsersController {
   @Get('GetById/:id')
   public async getById(@Param('id') id: number): Promise<User> {
     return await this.usersService.getById(id);
+  }
+
+  @Get('GetByCondition')
+  public async getByCondition(
+    filterCondition: FindOptionsWhere<User>,
+  ): Promise<User[]> {
+    return await this.usersService.getByCondition(filterCondition);
+  }
+
+  @Get('GetByEmail')
+  public async getByEmail(
+    emailCondition: FindOptionsWhere<User>,
+  ): Promise<User> {
+    return await this.usersService.getByEmail(emailCondition);
   }
 
   @Delete('DeleteUser/:id')
