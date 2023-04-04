@@ -7,6 +7,6 @@ export interface IUserService {
   getAll(): Promise<User[]>;
   getById(id: number): Promise<User>;
   getByCondition(filterCondition: FindOptionsWhere<User>): Promise<User[]>;
-  getByEmail(emailCondition: FindOptionsWhere<User>): Promise<User>;
+  getUserForAuthentication(email: string): Promise<User>;
   delete(id: string): Promise<DeleteResult>;
 }

@@ -41,10 +41,10 @@ export class UserService implements IUserService {
     return this.userRepository.getByCondition(filterCondition);
   }
 
-  public async getByEmail(
-    emailCondition: FindOptionsWhere<User>,
-  ): Promise<User> {
-    return this.userRepository.getOneByCondition(emailCondition);
+  public async getUserForAuthentication(email: string): Promise<User> {
+    return this.userRepository.getOneByCondition({
+      email: email,
+    });
   }
 
   public async delete(id: string): Promise<DeleteResult> {
