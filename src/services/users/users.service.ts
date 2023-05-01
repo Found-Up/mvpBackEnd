@@ -4,6 +4,7 @@ import { IUserRepository } from './interface/user.repository.interface';
 import { IUserService } from './interface/user.service.interface';
 import { CreateUserDto } from './dto/create-user.dto';
 import { DeleteResult, FindOptionsWhere } from 'typeorm';
+import { StoredProcedures } from 'src/constant/StoredProcedures';
 
 @Injectable()
 export class UserService implements IUserService {
@@ -45,6 +46,13 @@ export class UserService implements IUserService {
     return this.userRepository.getOneByCondition({
       email: email,
     });
+  }
+
+  public async getUserType(id: number): Promise<User> {
+    return this.userRepository.callStoredProcedure(
+      StoredProcedures.SP_GETUSERTYPE,
+      [id],
+    );
   }
 
   public async delete(id: string): Promise<DeleteResult> {

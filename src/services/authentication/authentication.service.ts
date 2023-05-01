@@ -15,6 +15,7 @@ export class AuthenticationService {
     const user = await this.userService.getUserForAuthentication(username);
     const comparePass = await this.hashGivenPassword(pass);
     if (user && compare(user.password, comparePass)) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password, ...result } = user;
       return result;
     }
@@ -24,6 +25,7 @@ export class AuthenticationService {
   public async login(user: any) {
     const payload = { username: user.email, sub: user.user_id };
     return {
+      id: user.user_id,
       access_token: this.jwtService.sign(payload),
     };
   }

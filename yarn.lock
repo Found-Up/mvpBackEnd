@@ -796,6 +796,18 @@
     consola "^2.15.0"
     node-fetch "^2.6.1"
 
+"@ogma/common@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@ogma/common/-/common-1.0.0.tgz#0940cf85cf44579bdc7e8c3e07b592dc35db12b8"
+  integrity sha512-IXvSnXbXccpxJR+UbN2fxp30R/44VFpx/T0ungb1PMwLa9BLmtbeQIXqc9TR11gRaDNY0e78tqVckau8oyXK0A==
+
+"@ogma/styler@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@ogma/styler/-/styler-1.0.0.tgz#7d4c7c2833f1b5559f64851110cef46529245bc7"
+  integrity sha512-Twtijg2eUS4HEPyic0FEpkdJgRtLSvVow/3gmLsMkyU+GhSm80PnRlc6q1N1rmf1EQhuwGZLKhS30sYIuFV38A==
+  dependencies:
+    "@ogma/common" "1.0.0"
+
 "@sinclair/typebox@^0.24.1":
   version "0.24.51"
   resolved "https://registry.npmjs.org/@sinclair/typebox/-/typebox-0.24.51.tgz"
@@ -3935,6 +3947,13 @@ neo-async@^2.6.2:
   version "2.6.2"
   resolved "https://registry.npmjs.org/neo-async/-/neo-async-2.6.2.tgz"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
+
+nestjs-spelunker@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/nestjs-spelunker/-/nestjs-spelunker-1.1.5.tgz#67301cde0b677b37df4163812b8a82a13e0f094a"
+  integrity sha512-chMOJMxqrq4uq+khKfTS9ECfNvkDeZ8XFYC4j0NiHxzvHM3/YyBcXboyYz/LOH3L45pQX75Q+GEQHcZQuR9d9w==
+  dependencies:
+    "@ogma/styler" "^1.0.0"
 
 node-abort-controller@^3.0.1:
   version "3.0.1"

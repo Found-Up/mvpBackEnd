@@ -12,6 +12,7 @@ export interface IBaseInterfaceRepository<T> {
   getAll(): Promise<T[]>;
   getByCondition(filterCondition: FindOptionsWhere<T>): Promise<T[]>;
   getOneByCondition(query: FindOptionsWhere<T>): Promise<T>;
+  callStoredProcedure(sp: string, parameters?: any): Promise<T>;
   update(
     updateConditions: any,
     data: QueryPartialEntity<T> | any,

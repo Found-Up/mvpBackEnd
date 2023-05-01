@@ -8,5 +8,6 @@ export interface IUserService {
   getById(id: number): Promise<User>;
   getByCondition(filterCondition: FindOptionsWhere<User>): Promise<User[]>;
   getUserForAuthentication(email: string): Promise<User>;
+  getUserType(id: number): Promise<User>;
   delete(id: string): Promise<DeleteResult>;
 }

@@ -52,6 +52,11 @@ export class UsersController {
     return await this.usersService.getUserForAuthentication(email);
   }
 
+  @Get('GetUserType')
+  public async getUserType(@Body('id') id: number): Promise<User> {
+    return await this.usersService.getUserType(id);
+  }
+
   @Delete('DeleteUser/:id')
   public async delete(@Param('id') id: string): Promise<DeleteResult> {
     return await this.usersService.delete(id);
