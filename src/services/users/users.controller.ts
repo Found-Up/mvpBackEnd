@@ -8,11 +8,13 @@ import {
   Inject,
   Param,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import { User } from './entity/users.entity';
 import { IUserService } from './interface/user.service.interface';
 import { CreateUserDto } from './dto/create-user.dto';
-import { DeleteResult } from 'typeorm';
+import { DeleteResult, FindOptionsWhere } from 'typeorm';
+import { JwtAuthenticationGuard } from '../authentication/authentication.guard.jwt';
 @Controller('UserService')
 export class UsersController {
   constructor(
@@ -25,6 +27,7 @@ export class UsersController {
     return await this.usersService.createUser(userDto);
   }
 
+  @UseGuards(JwtAuthenticationGuard)
   @Get('GetAllUsers')
   public async getAll(): Promise<User[]> {
     return await this.usersService.getAll();
@@ -33,6 +36,25 @@ export class UsersController {
   @Get('GetById/:id')
   public async getById(@Param('id') id: number): Promise<User> {
     return await this.usersService.getById(id);
+  }
+
+  @Get('GetByCondition')
+  public async getByCondition(
+    filterCondition: FindOptionsWhere<User>,
+  ): Promise<User[]> {
+    return await this.usersService.getByCondition(filterCondition);
+  }
+
+  @Get('GetUser')
+  public async getUserForAuthentication(
+    @Body('email') email: string,
+  ): Promise<User> {
+    return await this.usersService.getUserForAuthentication(email);
+  }
+
+  @Get('GetUserType')
+  public async getUserType(@Body('id') id: number): Promise<User> {
+    return await this.usersService.getUserType(id);
   }
 
   @Delete('DeleteUser/:id')

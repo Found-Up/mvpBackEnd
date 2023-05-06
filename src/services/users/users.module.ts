@@ -20,5 +20,11 @@ import { IUserService } from './interface/user.service.interface';
     },
   ],
   controllers: [UsersController],
+  exports: [
+    {
+      provide: 'IUserService',
+      useClass: UserService,
+    },
+  ],
 })
 export class UsersModule {}

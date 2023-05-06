@@ -32,6 +32,12 @@ export abstract class BaseAbstractRepository<T>
   ): Promise<T[]> {
     return await this.entity.findBy(filterCondition);
   }
+  public async getOneByCondition(query: FindOptionsWhere<T>): Promise<T> {
+    return await this.entity.findOneBy(query);
+  }
+  public async callStoredProcedure(sp: string, parameters?: any): Promise<T> {
+    return await this.entity.query('CALL foundup.' + sp, [parameters]);
+  }
   public async update(
     updateConditions: any,
     data: QueryPartialEntity<T> | any,
