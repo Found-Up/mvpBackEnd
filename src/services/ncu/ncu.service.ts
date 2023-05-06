@@ -23,6 +23,14 @@ export class NcuService implements INcuService {
     return this.ncuRepository.create(newNcu);
   }
 
+  public async getNcu(ncu_id: number): Promise<NCU> {
+    return this.ncuRepository.getById({
+      where: {
+        ncu_id: ncu_id,
+      },
+    });
+  }
+
   public async getUserExperience(ncu_id: number): Promise<NCU> {
     return this.ncuRepository.callStoredProcedure(
       StoredProcedures.SP_GETNCUEXPERIENCE,
