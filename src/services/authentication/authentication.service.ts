@@ -14,6 +14,8 @@ export class AuthenticationService {
   async validateUser(username: string, pass: string): Promise<any> {
     const user = await this.userService.getUserForAuthentication(username);
     const comparePass = await this.hashGivenPassword(pass);
+    const userType = await this.userService.getUserType(user.user_id);
+    user.user_type = userType[0][0].user_type;
     if (user && compare(user.password, comparePass)) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password, ...result } = user;
@@ -27,6 +29,7 @@ export class AuthenticationService {
     return {
       id: user.user_id,
       access_token: this.jwtService.sign(payload),
+      user_type: user.user_type,
     };
   }
 

@@ -9,8 +9,9 @@ import 'reflect-metadata'; //Keep in mind that the reflect-metadata shim is a po
 if (typeof Reflect === 'undefined') {
   import 'reflect-metadata';
 }*/
-import { SpelunkerModule } from 'nestjs-spelunker';
-import * as util from 'util';
+// comment out below for checking out DI
+// import { SpelunkerModule } from 'nestjs-spelunker';
+// import * as util from 'util';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

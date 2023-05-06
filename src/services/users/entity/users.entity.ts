@@ -27,7 +27,7 @@ export class User {
   @Column({ type: 'datetime' })
   updated_at: any;
 
-  user_type: string;
+  user_type?: string;
 
   @BeforeInsert()
   async hashPassword() {
