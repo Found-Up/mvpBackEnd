@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 import { UsersModule } from './services/users/users.module';
 import { QuestionsModule } from './services/questions/questions.module';
 import { AuthenticationModule } from './services/authentication/authentication.module';
+import { NcuModule } from './services/ncu/ncu.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { AuthenticationModule } from './services/authentication/authentication.m
     UsersModule,
     QuestionsModule,
     AuthenticationModule,
+    NcuModule,
   ],
   controllers: [AppController],
   providers: [AppService],
