@@ -29,6 +29,10 @@ export class User {
 
   user_type?: string;
 
+  ncu_id?: number;
+
+  sru_user_id?: number;
+
   @BeforeInsert()
   async hashPassword() {
     this.password = await hashSync(this.password, genSaltSync(10));

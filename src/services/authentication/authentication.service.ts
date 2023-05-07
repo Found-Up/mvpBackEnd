@@ -16,6 +16,12 @@ export class AuthenticationService {
     const comparePass = await this.hashGivenPassword(pass);
     const userType = await this.userService.getUserType(user.user_id);
     user.user_type = userType[0][0].user_type;
+    if (user.user_type === 'NCU') {
+      user.ncu_id = userType[0][0].ncu_id;
+    }
+    if (user.user_type === 'SRU') {
+      user.sru_user_id = userType[0][0].sru_user_id;
+    }
     if (user && compare(user.password, comparePass)) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password, ...result } = user;
