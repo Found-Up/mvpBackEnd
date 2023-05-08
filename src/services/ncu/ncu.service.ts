@@ -49,6 +49,14 @@ export class NcuService implements INcuService {
       [ncu_id],
     );
   }
+
+  public async getNcuName(ncu_id: number): Promise<NCU> {
+    return this.ncuRepository.callStoredProcedure(
+      StoredProcedures.SP_GETNCUUSERNAME,
+      [ncu_id],
+    );
+  }
+
   public async updateUserProfile(updateDto: UpdateNcuDto): Promise<NCU> {
     throw new Error('Method not implemented.');
   }

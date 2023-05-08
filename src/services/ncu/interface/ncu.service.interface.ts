@@ -8,5 +8,6 @@ export interface INcuService {
   getUserExperience(ncu_id: number): Promise<NCU>;
   getUserEducation(ncu_id: number): Promise<NCU>;
   getUserSkills(ncu_id: number): Promise<NCU>;
+  getNcuName(ncu_id: number): Promise<NCU>;
   updateUserProfile(updateDto: UpdateNcuDto): Promise<NCU>;
 }

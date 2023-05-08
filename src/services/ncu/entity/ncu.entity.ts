@@ -23,6 +23,10 @@ export class NCU {
   @Column()
   portfolio_link: string;
 
+  first_name: string;
+
+  last_name: string;
+
   skills: NCUSkills[];
 
   education: NCUEducation[];

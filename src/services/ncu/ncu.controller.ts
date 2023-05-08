@@ -31,16 +31,21 @@ export class NcuController {
   @UseGuards(JwtAuthenticationGuard)
   @Get('GetUserProfile/:id')
   public async getUserProfile(@Param('id') ncu_id: number): Promise<NCU> {
-    const [baseProfile, education, experience, skill] = await Promise.all([
-      this.ncuService.getNcu(ncu_id),
-      this.getUserEducation(ncu_id),
-      this.getUserExperience(ncu_id),
-      this.getUserSkills(ncu_id),
-    ]);
+    const [baseProfile, education, experience, skill, name] = await Promise.all(
+      [
+        this.ncuService.getNcu(ncu_id),
+        this.getUserEducation(ncu_id),
+        this.getUserExperience(ncu_id),
+        this.getUserSkills(ncu_id),
+        this.getNcuName(ncu_id),
+      ],
+    );
     const userProfile = baseProfile;
     userProfile.education = education;
     userProfile.experience = experience;
     userProfile.skills = skill;
+    userProfile.first_name = name.first_name;
+    userProfile.last_name = name.last_name;
     return userProfile;
   }
 
@@ -69,5 +74,12 @@ export class NcuController {
     const getSkills = await this.ncuService.getUserSkills(ncu_id);
     const skillsList: NCUSkills[] = getSkills[0];
     return skillsList;
+  }
+
+  @Get('GetName')
+  public async getNcuName(@Param('id') ncu_id: number): Promise<NCU> {
+    const getNcuName = await this.ncuService.getNcuName(ncu_id);
+    const ncuName = getNcuName[0][0];
+    return ncuName;
   }
 }

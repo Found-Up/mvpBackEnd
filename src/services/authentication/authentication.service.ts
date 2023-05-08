@@ -32,10 +32,19 @@ export class AuthenticationService {
 
   public async login(user: any) {
     const payload = { username: user.email, sub: user.user_id };
+    if (user.user_type === 'NCU') {
+      return {
+        id: user.user_id,
+        access_token: this.jwtService.sign(payload),
+        user_type: user.user_type,
+        ncu_id: user.ncu_id,
+      };
+    }
     return {
       id: user.user_id,
       access_token: this.jwtService.sign(payload),
       user_type: user.user_type,
+      sru_user_id: user.sru_user_id,
     };
   }
 
