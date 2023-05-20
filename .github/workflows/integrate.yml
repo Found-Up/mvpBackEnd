@@ -12,7 +12,19 @@ jobs:
     steps:
     - name: Checkout branch
       uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        
+    - uses: sonarsource/sonarqube-scan-action@master
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
+    - uses: sonarsource/sonarqube-quality-gate-action@master
+      timeout-minutes: 5
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        
     - name: Setup Node.js 16.x
       uses: actions/setup-node@v3
       with:
